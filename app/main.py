@@ -1,13 +1,17 @@
 import uvicorn
+from api.routes.api import router as api_router
 from events.beanie import init_db
 from fastapi import FastAPI
 from project.settings import settings
 
 
 def get_application() -> FastAPI:
-    return FastAPI(
+    application = FastAPI(
         title=settings.PROJECT_NAME, debug=settings.DEBUG, version=settings.VERSION
     )
+
+    application.include_router(api_router, prefix=settings.API_PREFIX)
+    return application
 
 
 app = get_application()
