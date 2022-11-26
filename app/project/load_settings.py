@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     MONGODB_NAME: str
     MONGODB_URL: str
     SECRET_KEY: str
+    JWT_SECRET: str
     MIN_CONNECTIONS_COUNT: int = 10
     MAX_CONNECTIONS_COUNT: int = 10
 
