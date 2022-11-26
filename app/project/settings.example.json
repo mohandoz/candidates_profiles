@@ -1,0 +1,9 @@
+{
+    "PROJECT_NAME": "candidates_profiles",
+    "API_PREFIX": "/api/",
+    "VERSION": "0.0.1",
+    "DEBUG": true,
+    "SECRET_KEY": "SECRET_KEY",
+    "MIN_CONNECTIONS_COUNT": 5,
+    "MAX_CONNECTIONS_COUNT": 5
+}
