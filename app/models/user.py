@@ -1,12 +1,17 @@
 from uuid import UUID
 
-from pydantic import BaseModel
+from beanie import PydanticObjectId
+from fastapi_users import schemas
+from pydantic import BaseModel, EmailStr
 
 
-class UserModel(BaseModel):
-    first_name: str
-    last_name: str
-
-
-class UserOutModel(BaseModel):
+class UserRead(schemas.BaseUser[PydanticObjectId]):
     uid: UUID
+
+
+class UserCreate(schemas.BaseUserCreate):
+    pass
+
+
+class UserUpdate(schemas.BaseUserUpdate):
+    pass
