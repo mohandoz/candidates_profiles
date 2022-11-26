@@ -1,18 +1,26 @@
+from typing import Optional
+from uuid import UUID, uuid4
+
 from beanie import PydanticObjectId
-from fastapi_users.db import BeanieBaseUser, BeanieUserDatabase
-from models import UserModel
+from fastapi import Depends, Request
+from fastapi_users import BaseUserManager
+from fastapi_users.db import BaseOAuthAccount, BeanieBaseUser, BeanieUserDatabase
+from pydantic import Field
 from pymongo import IndexModel
 
 
-class UserDoc(BeanieBaseUser[PydanticObjectId], UserModel):
-    UserModel
+class OAuthAccount(BaseOAuthAccount):
+    pass
 
-    class Settings:
+
+class UserDoc(BeanieBaseUser[PydanticObjectId]):
+    uid: UUID = Field(default_factory=uuid4)
+    oauth_accounts: list[OAuthAccount] = Field(default_factory=list)
+
+    class Settings(BeanieBaseUser.Settings):
         name = "user"
 
-        indexes = [
-            IndexModel("email", unique=True),
-        ]
+        indexes = BeanieBaseUser.Settings.indexes + [IndexModel("uid", unique=True)]
 
 
 async def get_user_db():
