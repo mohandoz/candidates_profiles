@@ -27,6 +27,7 @@ async def get_candidates_list(
     "/candidates",
     response_model=CandidateOutModel,
     name="candidates:create",
+    status_code=201,
 )
 async def create_candidate(
     candidate: CandidateModel, user: UserDoc = Depends(current_active_user)
