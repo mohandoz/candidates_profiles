@@ -9,7 +9,11 @@ from auth import auth_backend, current_active_user, fastapi_users
 from db import UserDoc
 from fastapi import APIRouter, Depends, HTTPException
 from models import CandidateModel, CandidateOutModel
-from services import create_candidate_service, get_candidates_list_service
+from services import (
+    create_candidate_service,
+    generate_candidates_report,
+    get_candidates_list_service,
+)
 
 
 @router.get(
@@ -33,3 +37,11 @@ async def create_candidate(
     candidate: CandidateModel, user: UserDoc = Depends(current_active_user)
 ):
     return await create_candidate_service(candidate)
+
+
+@router.get(
+    "/generate-report",
+    name="candidates:generate_report",
+)
+async def generate_report(user: UserDoc = Depends(current_active_user)):
+    return await generate_candidates_report()
