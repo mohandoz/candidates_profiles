@@ -1,5 +1,10 @@
 {
     "PROJECT_NAME": "candidates_profiles",
+    "DEBUG": true,
+    "SECRET_KEY": "SECRET",
+    "MONGODB_URL": "mongodb://localhost:27017",
+    "JWT_SECRET": "SECRET",
+    "MONGODB_NAME": "db",
     "API_PREFIX": "/api/",
     "VERSION": "0.0.1",
     "DEBUG": true,
